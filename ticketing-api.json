@@ -1,0 +1,210 @@
+{
+    "info": {
+        "name": "Auth API Documentation",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Register",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/register",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "register"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}"
+                },
+                "description": "Endpoint untuk mendaftarkan pengguna baru"
+            },
+            "response": [
+                {
+                    "status": "Success",
+                    "code": 201,
+                    "body": {
+                        "status": "success",
+                        "message": "User created successfully",
+                        "data": {
+                            "name": "John Doe",
+                            "email": "john@example.com",
+                            "updated_at": "2024-01-15T12:00:00.000000Z",
+                            "created_at": "2024-01-15T12:00:00.000000Z",
+                            "id": 1
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Login",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/login",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "login"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}"
+                },
+                "description": "Endpoint untuk login pengguna"
+            },
+            "response": [
+                {
+                    "status": "Success",
+                    "code": 200,
+                    "body": {
+                        "status": "success",
+                        "message": "User logged in successfully",
+                        "data": {
+                            "user": {
+                                "id": 1,
+                                "name": "John Doe",
+                                "email": "john@example.com",
+                                "created_at": "2024-01-15T12:00:00.000000Z",
+                                "updated_at": "2024-01-15T12:00:00.000000Z"
+                            },
+                            "token": "1|laravel_sanctum_token..."
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Login with Google",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/login-google",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "login-google"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"id_token\": \"google_id_token_here\"\n}"
+                },
+                "description": "Endpoint untuk login menggunakan Google"
+            },
+            "response": [
+                {
+                    "status": "Success",
+                    "code": 200,
+                    "body": {
+                        "status": "success",
+                        "message": "User logged in successfully",
+                        "data": {
+                            "user": {
+                                "id": 1,
+                                "name": "John Doe",
+                                "email": "john@gmail.com",
+                                "created_at": "2024-01-15T12:00:00.000000Z",
+                                "updated_at": "2024-01-15T12:00:00.000000Z"
+                            },
+                            "token": "1|laravel_sanctum_token..."
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Logout",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/logout",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "logout"
+                    ]
+                },
+                "description": "Endpoint untuk logout pengguna"
+            },
+            "response": [
+                {
+                    "status": "Success",
+                    "code": 200,
+                    "body": {
+                        "status": "success",
+                        "message": "Successfully logged out"
+                    }
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8000",
+            "type": "string"
+        }
+    ]
+}
