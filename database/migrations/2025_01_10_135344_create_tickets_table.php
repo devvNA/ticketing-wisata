@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_id')->constrained('events')->onDelete('cascade');
-            $table->foreignId('sku_id')->constrained('skus')->onDelete('cascade');
+            //event_id foreign key table events
+            $table->foreignId('event_id')->constrained()->onDelete('cascade');
+            //sku_id foreign key table skus
+            $table->foreignId('sku_id')->constrained()->onDelete('cascade');
+            //ticket_code
             $table->string('ticket_code');
+            //ticket_date nullable
             $table->date('ticket_date')->nullable();
-            $table->enum('status', ['available', 'booked', 'redeem'])->default('available');
+            //status default available
+            $table->enum('status', ['available', 'booked', 'sold', 'redeem'])->default('available');
             $table->timestamps();
         });
     }

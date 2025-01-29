@@ -13,11 +13,17 @@ return new class extends Migration
     {
         Schema::create('skus', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_id')->constrained('events')->onDelete('cascade');
+            //name
             $table->string('name');
+            //category string
             $table->string('category');
+            //event_id foreign key table events
+            $table->foreignId('event_id')->constrained()->onDelete('cascade');
+            //price
             $table->decimal('price', 10, 2);
+            //stock
             $table->integer('stock');
+            //day_type string
             $table->string('day_type');
             $table->timestamps();
         });

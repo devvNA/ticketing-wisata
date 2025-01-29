@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('order_tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-            $table->foreignId('ticket_id')->constrained('tickets')->onDelete('cascade');
+            //order_id foreign key table orders
+            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            //ticket_id foreign key table tickets
+            $table->foreignId('ticket_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
